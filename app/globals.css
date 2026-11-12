@@ -15,64 +15,92 @@ body {
   font-family: Arial, sans-serif;
 }
 
-main {
+.counter-shell {
   width: 100%;
-  max-width: 900px;
+  max-width: 620px;
   margin: 0 auto;
-  padding: 48px 24px;
+  padding: 18px 14px;
 }
 
-main > p:first-child {
+.counter-status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 14px;
   color: #00a6a6;
   font-family: monospace;
   font-size: 13px;
   font-weight: bold;
-  letter-spacing: 2px;
-}
-
-h1 {
-  margin: 28px 0;
-  font-size: clamp(22px, 4vw, 34px);
-  letter-spacing: 1px;
-}
-
-section {
-  margin: 14px 0;
-  padding: 20px;
-  border: 1px solid #292929;
-  background: #0b0b0b;
-}
-
-section p {
-  margin: 0 0 12px;
-  color: #00a6a6;
-  font-family: monospace;
-  font-size: 11px;
   letter-spacing: 1.5px;
 }
 
-section strong {
+.status-dot {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 8px;
+  border-radius: 50%;
+  background: #777;
+}
+
+.status-dot.live {
+  background: #00c995;
+  box-shadow: 0 0 8px rgba(0, 201, 149, 0.45);
+}
+
+.counter-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.counter-card {
+  min-width: 0;
+  margin: 0;
+  padding: 12px 13px;
+  border: 1px solid #292929;
+  border-radius: 3px;
+  background: #0b0b0b;
+}
+
+.counter-card p {
+  margin: 0 0 7px;
+  color: #00a6a6;
   font-family: monospace;
-  font-size: 32px;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 1.4;
+  letter-spacing: 0.8px;
+}
+
+.counter-card strong {
+  display: block;
+  color: #f5f5f5;
+  font-family: monospace;
+  font-size: 23px;
   font-weight: 600;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
 }
 
-footer {
-  margin-top: 40px;
-  padding-top: 20px;
-  border-top: 1px solid #292929;
-  color: #777;
-  font-family: monospace;
-  font-size: 11px;
-  letter-spacing: 1px;
-}
-
-@media (max-width: 600px) {
-  main {
-    padding: 28px 18px;
+@media (max-width: 400px) {
+  .counter-shell {
+    padding: 14px 10px;
   }
 
-  section strong {
-    font-size: 27px;
+  .counter-grid {
+    gap: 7px;
+  }
+
+  .counter-card {
+    padding: 10px;
+  }
+
+  .counter-card p {
+    font-size: 9px;
+  }
+
+  .counter-card strong {
+    font-size: 20px;
   }
 }
