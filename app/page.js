@@ -8,6 +8,9 @@ const initialStats = {
   verificationRequests: 0,
   successfulVerifications: 0,
   failedAttempts: 0,
+  blockedByWorldId: 0,
+  alreadyVerified: 0,
+  nullifierReplayed: 0,
 };
 
 export default function Home() {
@@ -30,7 +33,10 @@ export default function Home() {
         }
 
         if (active) {
-          setStats(data.stats);
+          setStats({
+            ...initialStats,
+            ...data.stats,
+          });
           setStatus("LIVE");
         }
       } catch {
@@ -55,6 +61,9 @@ export default function Home() {
     ["VERIFICATION REQUESTS", stats.verificationRequests],
     ["SUCCESSFUL VERIFICATIONS", stats.successfulVerifications],
     ["FAILED ATTEMPTS", stats.failedAttempts],
+    ["BLOCKED BY WORLD ID", stats.blockedByWorldId],
+    ["ALREADY VERIFIED", stats.alreadyVerified],
+    ["NULLIFIER REPLAYED", stats.nullifierReplayed],
   ];
 
   return (
