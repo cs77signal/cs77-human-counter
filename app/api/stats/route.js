@@ -10,6 +10,9 @@ const KEYS = {
   successfulVerifications:
     "cs77:human-counter:successful-verifications",
   failedAttempts: "cs77:human-counter:failed-attempts",
+  blockedByWorldId: "cs77:human-counter:blocked-by-world-id",
+  alreadyVerified: "cs77:human-counter:already-verified",
+  nullifierReplayed: "cs77:human-counter:nullifier-replayed",
 };
 
 export async function GET() {
@@ -24,11 +27,17 @@ export async function GET() {
       verificationRequests,
       successfulVerifications,
       failedAttempts,
+      blockedByWorldId,
+      alreadyVerified,
+      nullifierReplayed,
     ] = await redis.mget(
       KEYS.uniqueHumans,
       KEYS.verificationRequests,
       KEYS.successfulVerifications,
-      KEYS.failedAttempts
+      KEYS.failedAttempts,
+      KEYS.blockedByWorldId,
+      KEYS.alreadyVerified,
+      KEYS.nullifierReplayed
     );
 
     const stats = {
@@ -38,6 +47,9 @@ export async function GET() {
         successfulVerifications ?? 0
       ),
       failedAttempts: Number(failedAttempts ?? 0),
+      blockedByWorldId: Number(blockedByWorldId ?? 0),
+      alreadyVerified: Number(alreadyVerified ?? 0),
+      nullifierReplayed: Number(nullifierReplayed ?? 0),
     };
 
     if (
