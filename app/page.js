@@ -67,28 +67,26 @@ export default function Home() {
   ];
 
   return (
-    <main>
-      <p>⊕ CS77 • WORLD ID</p>
-
-      <h1>HUMAN VERIFICATION</h1>
-
-      <div className="status">
-        <span className={status === "LIVE" ? "status-dot live" : "status-dot"} />
-        SYSTEM {status}
+    <main className="counter-shell">
+      <div className="counter-status">
+        <span
+          className={`status-dot ${
+            status === "LIVE" ? "live" : ""
+          }`}
+        />
+        <span>SYSTEM {status}</span>
       </div>
 
-      <div className="metrics">
+      <div className="counter-grid">
         {metrics.map(([label, value]) => (
-          <section key={label}>
+          <section className="counter-card" key={label}>
             <p>{label}</p>
-            <strong>{Number(value).toLocaleString("en-US")}</strong>
+            <strong>
+              {Number(value).toLocaleString("en-US")}
+            </strong>
           </section>
         ))}
       </div>
-
-      <footer>
-        @cs77signal
-      </footer>
     </main>
   );
 }
